@@ -1,1 +1,738 @@
-[]
+[
+    {
+        "id": "77595d4b.8e2544",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d9fddc75.926fa",
+        "type": "tab",
+        "label": "prueba deshabilitar",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "f04b79ab.5f4a18",
+        "type": "tab",
+        "label": "terremotos",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "22f4db15.6ac274",
+        "type": "tab",
+        "label": "fligth radar",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ad1bcfe5.c5579",
+        "type": "tab",
+        "label": "Pruebas MQTT",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a6d9c6cd.366938",
+        "type": "tab",
+        "label": "broker mqtt",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d137a7c2.dc2828",
+        "type": "mqtt-broker",
+        "name": "mosquito enrique",
+        "broker": "enriquecrespo.com",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6992c9a2.dad418",
+        "type": "mqtt-broker",
+        "name": "aedes",
+        "broker": "enriquecrespo.com",
+        "port": "1884",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fcdb25fd.fb0458",
+        "type": "mqtt-broker",
+        "name": "montado en local",
+        "broker": "localhost",
+        "port": "1885",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b51cbc8a.71584",
+        "type": "debug",
+        "z": "77595d4b.8e2544",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 390,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8669abbb.795f88",
+        "type": "inject",
+        "z": "77595d4b.8e2544",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "hora",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "b51cbc8a.71584"
+            ]
+        ]
+    },
+    {
+        "id": "500e3b44.53b434",
+        "type": "comment",
+        "z": "77595d4b.8e2544",
+        "name": "msg complete",
+        "info": "interesa en la salida, usar el msg comlete",
+        "x": 120,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e36406f2.8ef798",
+        "type": "inject",
+        "z": "f04b79ab.5f4a18",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "string"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 230,
+        "y": 220,
+        "wires": [
+            [
+                "c3c50023.3bbed"
+            ]
+        ]
+    },
+    {
+        "id": "c3c50023.3bbed",
+        "type": "http request",
+        "z": "f04b79ab.5f4a18",
+        "name": "Recent Quakes",
+        "method": "GET",
+        "paytoqs": "ignore",
+        "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 400,
+        "y": 220,
+        "wires": [
+            [
+                "8afc6cac.e0812"
+            ]
+        ]
+    },
+    {
+        "id": "8afc6cac.e0812",
+        "type": "csv",
+        "z": "f04b79ab.5f4a18",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": 0,
+        "strings": true,
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "44779781.4190f8",
+                "6f0eb546.9e208c"
+            ]
+        ]
+    },
+    {
+        "id": "44779781.4190f8",
+        "type": "debug",
+        "z": "f04b79ab.5f4a18",
+        "name": "",
+        "active": true,
+        "complete": false,
+        "x": 730,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "6f0eb546.9e208c",
+        "type": "switch",
+        "z": "f04b79ab.5f4a18",
+        "name": "",
+        "property": "payload.mag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "7",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "d78d4aa8.8c8208"
+            ]
+        ]
+    },
+    {
+        "id": "d78d4aa8.8c8208",
+        "type": "change",
+        "z": "f04b79ab.5f4a18",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PANIC!",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 340,
+        "wires": [
+            [
+                "72fddece.fac0d"
+            ]
+        ]
+    },
+    {
+        "id": "72fddece.fac0d",
+        "type": "debug",
+        "z": "f04b79ab.5f4a18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "complete": false,
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "76a1b73b.183d68",
+        "type": "inject",
+        "z": "22f4db15.6ac274",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "16c80c68.7ba644"
+            ]
+        ]
+    },
+    {
+        "id": "65d40db8.a06334",
+        "type": "debug",
+        "z": "22f4db15.6ac274",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "16c80c68.7ba644",
+        "type": "flightradar24",
+        "z": "22f4db15.6ac274",
+        "lat": "42.790018",
+        "latType": "num",
+        "lon": "-1.700304",
+        "lonType": "num",
+        "name": "",
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "65d40db8.a06334",
+                "4665f14f.c271e"
+            ]
+        ]
+    },
+    {
+        "id": "4665f14f.c271e",
+        "type": "switch",
+        "z": "22f4db15.6ac274",
+        "name": "",
+        "property": "payload.destination",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "PNA",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 160,
+        "wires": [
+            [
+                "e9e68e6d.c0b08",
+                "3e8ddd6b.d0f712",
+                "46ea353c.45351c"
+            ]
+        ]
+    },
+    {
+        "id": "e9e68e6d.c0b08",
+        "type": "debug",
+        "z": "22f4db15.6ac274",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 890,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3e8ddd6b.d0f712",
+        "type": "e-mail",
+        "z": "22f4db15.6ac274",
+        "d": true,
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": true,
+        "name": "ruperrodrig@gmail.com",
+        "dname": "Javier",
+        "x": 950,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c1ccadbe.3c7d4",
+        "type": "mqtt in",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "topic": "aprendiendonodered21/enrique/m5stick/enrique/temperatura",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d137a7c2.dc2828",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "c44b1912.ac2848"
+            ]
+        ]
+    },
+    {
+        "id": "c44b1912.ac2848",
+        "type": "debug",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "62130f1.41037f",
+        "type": "mqtt out",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "topic": "aprendiendonodered21/Ruperez/hora",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d137a7c2.dc2828",
+        "x": 530,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "378e424b.10bb8e",
+        "type": "inject",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "62130f1.41037f",
+                "f9c23d23.c8c24"
+            ]
+        ]
+    },
+    {
+        "id": "f9c23d23.c8c24",
+        "type": "exec",
+        "z": "ad1bcfe5.c5579",
+        "command": "vcgencmd measure_temp",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Raspberry CPU Temperature",
+        "x": 340,
+        "y": 480,
+        "wires": [
+            [
+                "a0ad4644.0efbf8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a0ad4644.0efbf8",
+        "type": "function",
+        "z": "ad1bcfe5.c5579",
+        "name": "Extract CPU Temp",
+        "func": "const re = /^temp=(.*)'C$/gm;\nmsg.payload = Number(msg.payload.replace(re, '$1'));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 630,
+        "y": 460,
+        "wires": [
+            [
+                "bea0b73c.f2d718",
+                "c9c889bd.323488",
+                "c5b73c71.0d8dd",
+                "a92f4ffd.7aa6e"
+            ]
+        ]
+    },
+    {
+        "id": "bea0b73c.f2d718",
+        "type": "debug",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c9c889bd.323488",
+        "type": "mqtt out",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "topic": "aprendiendonodered21/Ruperez/temperatura",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d137a7c2.dc2828",
+        "x": 830,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "eff5c207.48724",
+        "type": "mqtt in",
+        "z": "ad1bcfe5.c5579",
+        "name": "todos los mensajes dentro de la ruta con #",
+        "topic": "aprendiendonodered21/enrique/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "d137a7c2.dc2828",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 250,
+        "y": 620,
+        "wires": [
+            [
+                "7b8b56ad.8a7338"
+            ]
+        ]
+    },
+    {
+        "id": "7b8b56ad.8a7338",
+        "type": "debug",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "46ea353c.45351c",
+        "type": "rbe",
+        "z": "22f4db15.6ac274",
+        "name": "filtro de ID",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload.id",
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "e721977.0cef168"
+            ]
+        ]
+    },
+    {
+        "id": "4741ed07.9d48e4",
+        "type": "aedes broker",
+        "z": "a6d9c6cd.366938",
+        "name": "broke en node red",
+        "mqtt_port": "1884",
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "dburl": "",
+        "usetls": false,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5b73c71.0d8dd",
+        "type": "mqtt out",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "topic": "Ruperez/Temperatura",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6992c9a2.dad418",
+        "x": 1130,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a92f4ffd.7aa6e",
+        "type": "mqtt out",
+        "z": "ad1bcfe5.c5579",
+        "name": "",
+        "topic": "local/temperatura",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fcdb25fd.fb0458",
+        "x": 980,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "e721977.0cef168",
+        "type": "debug",
+        "z": "22f4db15.6ac274",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 320,
+        "wires": []
+    }
+]
